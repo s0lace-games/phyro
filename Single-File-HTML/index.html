@@ -1,223 +1,281 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>phyro</title>
+<title>Phyro</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --bg: #ffffff;
-    --fg: #000000;
-    --muted: #888888;
-    --border: #e0e0e0;
-    --hover: #f5f5f5;
-  }
+:root {
+–bg: #ffffff;
+–fg: #000000;
+–muted: #888888;
+–border: #e0e0e0;
+–hover: #f5f5f5;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+body {
+background: var(–bg);
+color: var(–fg);
+font-family: -apple-system, BlinkMacSystemFont, ‘Segoe UI’, sans-serif;
+height: 100vh;
+display: flex;
+flex-direction: column;
+}
 
-  /* ── TOP BAR ── */
-  #topbar {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    padding: 0 16px;
-    border-bottom: 1px solid var(--border);
-    gap: 12px;
-    flex-shrink: 0;
-  }
+/* ── TOP BAR ── */
+#topbar {
+display: flex;
+align-items: center;
+height: 48px;
+padding: 0 16px;
+border-bottom: 1px solid var(–border);
+gap: 12px;
+flex-shrink: 0;
+}
 
-  #home-btn {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--fg);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background 0.1s;
-    flex-shrink: 0;
-  }
-  #home-btn:hover { background: var(--hover); }
+#home-btn {
+font-size: 13px;
+font-weight: 700;
+letter-spacing: -0.3px;
+color: var(–fg);
+background: none;
+border: none;
+cursor: pointer;
+padding: 4px 8px;
+border-radius: 6px;
+transition: background 0.1s;
+flex-shrink: 0;
+}
+#home-btn:hover { background: var(–hover); }
 
-  #url-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 640px;
-  }
-  #url-wrap:focus-within { border-color: var(--fg); }
+#url-wrap {
+flex: 1;
+display: flex;
+align-items: center;
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+max-width: 640px;
+}
+#url-wrap:focus-within { border-color: var(–fg); }
 
-  #url-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 8px 12px;
-    font-size: 13px;
-    font-family: inherit;
-    background: transparent;
-    color: var(--fg);
-  }
-  #url-input::placeholder { color: var(--muted); }
+#url-input {
+flex: 1;
+border: none;
+outline: none;
+padding: 8px 12px;
+font-size: 13px;
+font-family: inherit;
+background: transparent;
+color: var(–fg);
+}
+#url-input::placeholder { color: var(–muted); }
 
-  #go-btn {
-    background: var(--fg);
-    color: var(--bg);
-    border: none;
-    padding: 8px 14px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: opacity 0.1s;
-  }
-  #go-btn:hover { opacity: 0.75; }
+#go-btn {
+background: var(–fg);
+color: var(–bg);
+border: none;
+padding: 8px 14px;
+font-size: 12px;
+font-weight: 600;
+cursor: pointer;
+font-family: inherit;
+transition: opacity 0.1s;
+}
+#go-btn:hover { opacity: 0.75; }
 
-  #proxy-select {
-    font-size: 11px;
-    color: var(--muted);
-    background: none;
-    border: none;
-    border-left: 1px solid var(--border);
-    padding: 8px 8px;
-    cursor: pointer;
-    font-family: inherit;
-    outline: none;
-  }
+#proxy-select {
+font-size: 11px;
+color: var(–muted);
+background: none;
+border: none;
+border-left: 1px solid var(–border);
+padding: 8px 8px;
+cursor: pointer;
+font-family: inherit;
+outline: none;
+}
 
-  /* ── MAIN CONTENT ── */
-  #content {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-  }
+/* ── MAIN CONTENT ── */
+#content {
+flex: 1;
+position: relative;
+overflow: hidden;
+}
 
-  /* ── HOME PAGE ── */
-  #home-page {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-  }
+/* ── HOME PAGE ── */
+#home-page {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 24px;
+}
 
-  #home-page h1 {
-    font-size: 48px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    color: var(--fg);
-  }
+#home-page h1 {
+font-size: 48px;
+font-weight: 800;
+letter-spacing: -2px;
+color: var(–fg);
+}
 
-  #home-search {
-    display: flex;
-    border: 1.5px solid var(--fg);
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 480px;
-  }
-  #home-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 12px 16px;
-    font-size: 15px;
-    font-family: inherit;
-    background: transparent;
-  }
-  #home-input::placeholder { color: var(--muted); }
-  #home-go {
-    background: var(--fg);
-    color: var(--bg);
-    border: none;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  #home-go:hover { opacity: 0.8; }
+#home-search {
+display: flex;
+border: 1.5px solid var(–fg);
+border-radius: 10px;
+overflow: hidden;
+width: 100%;
+max-width: 480px;
+}
+#home-input {
+flex: 1;
+border: none;
+outline: none;
+padding: 12px 16px;
+font-size: 15px;
+font-family: inherit;
+background: transparent;
+}
+#home-input::placeholder { color: var(–muted); }
+#home-go {
+background: var(–fg);
+color: var(–bg);
+border: none;
+padding: 12px 20px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+font-family: inherit;
+}
+#home-go:hover { opacity: 0.8; }
 
-  .note {
-    font-size: 11px;
-    color: var(--muted);
-    max-width: 380px;
-    text-align: center;
-    line-height: 1.5;
-  }
+.shortcuts {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+justify-content: center;
+max-width: 480px;
+}
+.sc {
+font-size: 12px;
+color: var(–muted);
+background: none;
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 6px 12px;
+cursor: pointer;
+font-family: inherit;
+transition: all 0.1s;
+}
+.sc:hover { border-color: var(–fg); color: var(–fg); }
 
-  /* ── PROXY VIEW ── */
-  #proxy-view {
-    position: absolute;
-    inset: 0;
-    display: none;
-    flex-direction: column;
-  }
-  #proxy-view.active { display: flex; }
+.note {
+font-size: 11px;
+color: var(–muted);
+max-width: 380px;
+text-align: center;
+line-height: 1.5;
+}
 
-  #proxy-frame {
-    flex: 1;
-    border: none;
-    width: 100%;
-    background: white;
-  }
+/* ── PROXY VIEW ── */
+#proxy-view {
+position: absolute;
+inset: 0;
+display: none;
+flex-direction: column;
+}
+#proxy-view.active { display: flex; }
 
-  /* ── STATES ── */
-  #status-overlay {
-    position: absolute;
-    inset: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: var(--bg);
-  }
-  #status-overlay.active { display: flex; }
+#proxy-frame {
+flex: 1;
+border: none;
+width: 100%;
+background: white;
+}
 
-  .spinner {
-    width: 24px; height: 24px;
-    border: 2px solid var(--border);
-    border-top-color: var(--fg);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* ── STATES ── */
+#status-overlay {
+position: absolute;
+inset: 0;
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 12px;
+background: var(–bg);
+}
+#status-overlay.active { display: flex; }
 
-  #status-msg { font-size: 13px; color: var(--muted); }
-  #status-detail { font-size: 12px; color: var(--muted); max-width: 400px; text-align: center; line-height: 1.5; }
+.spinner {
+width: 24px; height: 24px;
+border: 2px solid var(–border);
+border-top-color: var(–fg);
+border-radius: 50%;
+animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  #retry-btn {
-    background: var(--fg);
-    color: var(--bg);
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-size: 13px;
-    font-family: inherit;
-    cursor: pointer;
-    display: none;
-  }
-  #retry-btn:hover { opacity: 0.75; }
+#status-msg { font-size: 13px; color: var(–muted); }
+#status-detail { font-size: 12px; color: var(–muted); max-width: 400px; text-align: center; line-height: 1.5; }
 
+#retry-btn {
+background: var(–fg);
+color: var(–bg);
+border: none;
+border-radius: 6px;
+padding: 8px 16px;
+font-size: 13px;
+font-family: inherit;
+cursor: pointer;
+display: none;
+}
+#retry-btn:hover { opacity: 0.75; }
+
+/* ── CLOAK BAR (bottom) ── */
+#cloak-bar {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 6px 16px;
+border-top: 1px solid var(–border);
+flex-shrink: 0;
+}
+#cloak-bar label { font-size: 11px; color: var(–muted); }
+#cloak-title-input, #cloak-icon-input {
+font-size: 11px;
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 3px 7px;
+font-family: inherit;
+outline: none;
+background: transparent;
+color: var(–fg);
+}
+#cloak-title-input:focus, #cloak-icon-input:focus { border-color: var(–fg); }
+#cloak-title-input { width: 140px; }
+#cloak-icon-input { width: 200px; }
+.cloak-preset {
+font-size: 11px;
+color: var(–muted);
+background: none;
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 3px 8px;
+cursor: pointer;
+font-family: inherit;
+}
+.cloak-preset:hover { border-color: var(–fg); color: var(–fg); }
 </style>
+
 </head>
 <body>
+
+<!-- TOP BAR -->
 
 <div id="topbar">
   <button id="home-btn">phyro</button>
@@ -232,7 +290,11 @@
   </div>
 </div>
 
+<!-- CONTENT -->
+
 <div id="content">
+
+  <!-- HOME PAGE -->
 
   <div id="home-page">
     <h1>phyro</h1>
@@ -240,12 +302,24 @@
       <input id="home-input" type="text" placeholder="Search or enter a URL…" autocomplete="off">
       <button id="home-go">Go</button>
     </div>
-
+    <div class="shortcuts">
+      <button class="sc" onclick="go('google.com')">Google</button>
+      <button class="sc" onclick="go('youtube.com')">YouTube</button>
+      <button class="sc" onclick="go('reddit.com')">Reddit</button>
+      <button class="sc" onclick="go('wikipedia.org')">Wikipedia</button>
+      <button class="sc" onclick="go('github.com')">GitHub</button>
+      <button class="sc" onclick="go('itch.io')">itch.io</button>
+    </div>
+    <p class="note">Works best on simple sites, articles, and wikis. Heavy JS apps (YouTube, TikTok, GitHub) load partially — this is a CORS limitation of all HTML-only proxies.</p>
   </div>
+
+  <!-- PROXY IFRAME -->
 
   <div id="proxy-view">
     <iframe id="proxy-frame" sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation"></iframe>
   </div>
+
+  <!-- STATUS / ERROR OVERLAY -->
 
   <div id="status-overlay">
     <div class="spinner" id="spinner"></div>
@@ -254,6 +328,18 @@
     <button id="retry-btn" onclick="retryLoad()">Try next proxy</button>
   </div>
 
+</div>
+
+<!-- CLOAK BAR -->
+
+<div id="cloak-bar">
+  <label>cloak:</label>
+  <input id="cloak-title-input" type="text" placeholder="tab title" oninput="applyCloak()">
+  <input id="cloak-icon-input" type="text" placeholder="favicon url (optional)" oninput="applyCloak()">
+  <button class="cloak-preset" onclick="setCloak('Google Classroom','https://ssl.gstatic.com/classroom/favicon.png')">Classroom</button>
+  <button class="cloak-preset" onclick="setCloak('Khan Academy','https://cdn.kastatic.org/images/favicon.ico')">Khan</button>
+  <button class="cloak-preset" onclick="setCloak('Desmos','https://www.desmos.com/favicon.ico')">Desmos</button>
+  <button class="cloak-preset" onclick="setCloak('','')">reset</button>
 </div>
 
 <script>
@@ -394,6 +480,24 @@ function showStatus(type, msg, detail) {
   document.getElementById('retry-btn').style.display = type === 'error' ? '' : 'none';
 }
 
+// ── CLOAK ──
+function applyCloak() {
+  const title = document.getElementById('cloak-title-input').value;
+  const icon = document.getElementById('cloak-icon-input').value;
+  document.title = title || 'phyro';
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+  link.href = icon || "data:,";
+  // Save
+  try { localStorage.setItem('phyro_cloak', JSON.stringify({title, icon})); } catch(e) {}
+}
+
+function setCloak(title, icon) {
+  document.getElementById('cloak-title-input').value = title;
+  document.getElementById('cloak-icon-input').value = icon;
+  applyCloak();
+}
+
 // ── EVENTS ──
 document.getElementById('home-btn').onclick = showHome;
 document.getElementById('go-btn').onclick = () => go(document.getElementById('url-input').value);
@@ -415,7 +519,15 @@ document.addEventListener('keydown', e => {
 });
 
 // ── INIT ──
+try {
+  const saved = JSON.parse(localStorage.getItem('phyro_cloak') || '{}');
+  if (saved.title) { document.getElementById('cloak-title-input').value = saved.title; }
+  if (saved.icon) { document.getElementById('cloak-icon-input').value = saved.icon; }
+  applyCloak();
+} catch(e) {}
+
 document.getElementById('home-input').focus();
 </script>
+
 </body>
 </html>
